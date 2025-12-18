@@ -25,9 +25,10 @@ app.add_middleware(
 # Initialize LLM with OpenRouter
 import os
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-1.5-flash",
-    google_api_key=os.environ["GEMINI_API_KEY"],
+llm = ChatOpenAI(
+    model="meta-llama/llama-3.1-8b-instruct",
+    api_key=os.getenv("OPENROUTER_API_KEY"),
+    base_url="https://openrouter.ai/api/v1",
     temperature=0.3,
 )
 
