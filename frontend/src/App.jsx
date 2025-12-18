@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, Cloud, Loader2, Sparkles, CloudRain, Sun, Wind, Droplets, MapPin, Zap } from 'lucide-react';
 
 export default function App() {
+  const API_BASE = import.meta.env.VITE_API_URL;
   const [messages, setMessages] = useState([
     { role: 'assistant', content: 'Hello! Ask me about the weather in any city. ✨' }
   ]);
@@ -24,7 +25,7 @@ export default function App() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/chat', {
+     const response = await fetch(`${API_BASE}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input })
