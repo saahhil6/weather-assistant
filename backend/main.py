@@ -25,9 +25,13 @@ app.add_middleware(
 # Initialize LLM with OpenRouter
 llm = ChatOpenAI(
     model="meta-llama/llama-3.1-8b-instruct",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
+    api_key=os.environ["OPENAI_API_KEY"],   # <-- HARD REQUIREMENT
     base_url="https://openrouter.ai/api/v1",
     temperature=0.3,
+    default_headers={
+        "HTTP-Referer": "http://localhost:3000",
+        "X-Title": "Weather Assistant",
+    },
 )
 
 # Weather tool using wttr.in (free, no API key needed)
